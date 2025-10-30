@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Growsoft Docs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">G</div>
+        <div class="title">Growsoft Docs</div>
+      </div>
+
+      <nav class="nav">
+        <a href="#home" class="nav-item">Home</a>
+        <a href="#callbacks" class="nav-item">Callbacks</a>
+        <a href="#player" class="nav-item">Player API</a>
+        <a href="#world" class="nav-item">World API</a>
+        <a href="#tile" class="nav-item">Tile API</a>
+        <a href="#item" class="nav-item">Item API</a>
+        <a href="#inventory_drop" class="nav-item">Inventory / Drop</a>
+        <a href="#server_global" class="nav-item">Server & Global</a>
+        <a href="#os_library" class="nav-item">OS Library</a>
+        <a href="#libraries" class="nav-item">Libraries</a>
+        <a href="#examples" class="nav-item">Examples</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div>Theme: Minimal Gaming</div>
+        <div class="small">No search • Static docs</div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="header">
+        <h1>Growsoft Docs</h1>
+        <p class="lead">Dokumentasi API Lua Growsoft — callbacks, player/world/tile/item functions, server utilities, dan contoh.</p>
+      </header>
+
+      <section id="home" class="section">
+        <h2>Home</h2>
+        <p>Selamat datang di <strong>Growsoft Docs</strong>. Halaman ini berisi dokumentasi lengkap API Lua Growsoft yang biasa dipakai untuk membuat script server private (callback, fungsi player/world/tile/item, dll).</p>
+        <p>Gunakan sidebar di kiri untuk navigasi antar bagian.</p>
+      </section>
+
+      <section id="callbacks" class="section">
+        <h2>Callbacks</h2>
+        <p>Daftar callback yang umum digunakan (dipanggil engine Growsoft):</p>
+        <ul>
+          <li><code>onPlayerDialogCallback(world, player, data)</code> — handle dialog interactions.</li>
+          <li><code>onPlayerConsumableCallback(world, player, tile, clickedPlayer, itemID)</code></li>
+          <li><code>onTileWrenchCallback(world, player, tile)</code></li>
+          <li><code>onPlayerWrenchCallback(world, wrenchingPlayer)</code></li>
+          <li><code>onPlayerLoginCallback(player)</code></li>
+          <li><code>onTilePlaceCallback(world, player, tile, placingID)</code> — return <code>true</code> to prevent placement.</li>
+          <li><code>onPlayerTick(player)</code> — dipanggil setiap 1000ms per player.</li>
+          <li><code>onWorldTick(world)</code> — dipanggil setiap 100ms untuk world aktif.</li>
+          <li><code>onTick()</code> — global, setiap 100ms.</li>
+          <li><code>onPlayerFirstTimeLoginCallback(player)</code></li>
+          <li><code>onPlayerEnterWorldCallback(world, player)</code></li>
+          <li><code>onPlayerLeaveWorldCallback(world, player)</code></li>
+          <li><code>onTilePunchCallback(world, avatar, tile)</code> — return <code>true</code> untuk mencegah break default.</li>
+          <li><code>onPlayerDisconnectCallback(player)</code></li>
+          <li><code>onPlayerDeathCallback(world, player, isRespawn)</code></li>
+          <li><code>onPlayerDropCallback(world, player, itemID, itemCount)</code></li>
+          <li><code>onPlayerLevelUPCallback(world, player, levelReached)</code></li>
+          <li><code>onPlayerEquipClothingCallback(world, player, itemID)</code></li>
+          <li><code>onPlayerPickupItemCallback(world, player, itemID, itemCount)</code></li>
+          <li>...dan banyak lagi (lihat bagian lengkap di bawah).</li>
+        </ul>
+      </section>
+
+      <section id="player" class="section">
+        <h2>Player API</h2>
+        <p>Fungsi utama yang tersedia di object <code>player</code>:</p>
+        <ul>
+          <li><code>player:getGems()</code> — mengembalikan jumlah gems pemain.</li>
+          <li><code>player:removeGems(amount, sendPacket, isDisplay)</code></li>
+          <li><code>player:addGems(amount, sendPacket, isDisplay)</code></li>
+          <li><code>player:getCoins()</code></li>
+          <li><code>player:removeCoins(amount, sendPacket)</code></li>
+          <li><code>player:getBankBalance()</code></li>
+          <li><code>player:addBankBalance(amount)</code> / <code>player:removeBankBalance(amount)</code></li>
+          <li><code>player:onConsoleMessage(message)</code></li>
+          <li><code>player:onTalkBubble(netID, message, isApi)</code></li>
+          <li><code>player:onDialogRequest(dialogString)</code></li>
+          <li><code>player:getNetID()</code></li>
+          <li><code>player:getUserID()</code></li>
+          <li><code>player:playAudio(filePath, delay)</code></li>
+          <li><code>player:getItemAmount(itemID)</code></li>
+          <li><code>player:changeItem(itemID, amount, isSendPacket)</code></li>
+          <li><code>player:enterWorld(worldName, doorID)</code></li>
+          <li><code>player:getWorldName()</code></li>
+          <li><code>player:onTextOverlay(text)</code></li>
+          <li><code>player:getCleanName()</code></li>
+          <li><code>player:hasRole(role)</code></li>
+          <li><code>player:setRole(role)</code></li>
+          <li><code>player:addMod(modID, durationSeconds)</code></li>
+          <li><code>player:removeMod(modID)</code></li>
+          <li><code>player:getCountry()</code>, <code>player:getPlatform()</code></li>
+          <li><code>player:sendVariant(variantTable, delay, netID)</code></li>
+          <li><code>player:sendAction(actionString)</code></li>
+          <li><code>player:getInventoryItems()</code></li>
+          <li><code>player:getWorld()</code></li>
+          <li><code>player:disconnect()</code></li>
+          <li><code>player:hasTitle(id)</code>, <code>player:addTitle(id)</code>, <code>player:removeTitle(id)</code></li>
+          <li><code>player:isOnline()</code>, <code>player:getType()</code></li>
+          <li><code>player:isFacingLeft()</code>, <code>player:addMail(mailDataTable)</code></li>
+          <li><code>player:clearMailbox()</code>, <code>player:setNickname(name)</code>, <code>player:resetNickname()</code></li>
+          <li><code>player:onClothesUI(targetPlayer)</code>, <code>player:onAchievementsUI(targetPlayer)</code>, <code>player:onTitlesUI(targetPlayer)</code></li>
+          <li><code>player:onTradeScanUI()</code>, <code>player:onGrow4GoodUI()</code>, <code>player:onRedeemMenu()</code></li>
+          <li><code>player:getClothingItemID(slot)</code>, <code>player:getUnlockedAchievementsCount()</code></li>
+          <li><code>player:getAchievementsCount()</code>, <code>player:getBackpackUsedSize()</code></li>
+          <li><code>player:setNextDialogRGBA(r,g,b,a)</code>, <code>player:setNextDialogBorderRGBA(r,g,b,a)</code>, <code>player:resetDialogColor()</code></li>
+        </ul>
+      </section>
+
+      <section id="world" class="section">
+        <h2>World API</h2>
+        <ul>
+          <li><code>world:getOwner()</code></li>
+          <li><code>world:getName()</code></li>
+          <li><code>world:useItemEffect(playerNetID, itemID, targetNetID, effectDelay)</code></li>
+          <li><code>world:updateClothing(player)</code></li>
+          <li><code>world:spawnGems(x, y, amount, player)</code></li>
+          <li><code>world:getVisiblePlayersCount()</code></li>
+          <li><code>world:getPlayersCount(includeInvisible)</code></li>
+          <li><code>world:onCreateChatBubble(x, y, text, netID)</code></li>
+          <li><code>world:onCreateExplosion(x, y, radius, power)</code></li>
+          <li><code>world:addXP(player, amount)</code></li>
+          <li><code>world:setPlayerPosition(player, x, y)</code></li>
+          <li><code>world:getDroppedItems()</code>, <code>world:getTileDroppedItems(tile)</code>, <code>world:removeDroppedItem(dropUID)</code></li>
+          <li><code>world:getTile(x, y)</code></li>
+          <li><code>world:setTileForeground(tile, itemID, isVisual, player)</code></li>
+          <li><code>world:setTileBackground(tile, itemID, isVisual, player)</code></li>
+          <li><code>world:kill(player)</code></li>
+          <li><code>world:hasAccess(player)</code>, <code>world:hasTileAccess(player, tile)</code></li>
+          <li><code>world:punchTile(tile)</code>, <code>world:updateTile(tile)</code></li>
+          <li><code>world:getPlayers()</code>, <code>world:setClothing(player, item_id)</code></li>
+          <li><code>world:adjustGems(player, tile, gem_count, val)</code>, <code>world:onLoot(player, tile, gem_count)</code></li>
+          <li><code>world:getSizeX()</code>, <code>world:getSizeY()</code>, <code>world:getTiles()</code></li>
+          <li><code>world:getTilesByActionType(actionType)</code></li>
+          <li><code>world:createNPC(name,x,y)</code>, <code>world:findNPCByName(name)</code>, <code>world:removeNPC(npc)</code></li>
+        </ul>
+      </section>
+
+      <section id="tile" class="section">
+        <h2>Tile API</h2>
+        <ul>
+          <li><code>tile:getTileID()</code></li>
+          <li><code>tile:getPosX()</code>, <code>tile:getPosY()</code></li>
+          <li><code>tile:getTileForeground()</code>, <code>tile:getTileBackground()</code></li>
+          <li><code>tile:getTileData(property)</code></li>
+          <li><code>tile:setTileDataInt(property, value)</code> — gunakan <code>world:updateTile</code> untuk memperbarui tampilan.</li>
+          <li><code>tile:getTileItem()</code></li>
+        </ul>
+      </section>
+
+      <section id="item" class="section">
+        <h2>Item API</h2>
+        <ul>
+          <li><code>getItem(itemID)</code> — mengembalikan object item global.</li>
+          <li><code>item:getName()</code>, <code>item:getRarity()</code>, <code>item:getActionType()</code></li>
+          <li><code>item:getGrowTime()</code>, <code>item:setGrowTime(seconds)</code></li>
+          <li><code>item:setActionType(type)</code>, <code>item:setDescription(text)</code></li>
+          <li><code>item:getCategoryType()</code>, <code>item:getEditableType()</code></li>
+          <li><code>item:setPrice(price)</code>, <code>item:isObtainable()</code></li>
+          <li><code>item:getNetID()</code>, <code>item:getGems(world, player)</code>, <code>item:getXP(world, player)</code></li>
+        </ul>
+      </section>
+
+      <section id="inventory_drop" class="section">
+        <h2>Inventory Item & Drop</h2>
+        <ul>
+          <li><code>inventory_item:getItemID()</code>, <code>inventory_item:getItemCount()</code></li>
+          <li><code>drop:getItemID()</code>, <code>drop:getItemCount()</code>, <code>drop:getPosX()</code>, <code>drop:getPosY()</code></li>
+          <li><code>drop:getUID()</code>, <code>drop:getFlags()</code></li>
+        </ul>
+      </section>
+
+      <section id="server_global" class="section">
+        <h2>Server & Global</h2>
+        <ul>
+          <li><code>getItemsCount()</code></li>
+          <li><code>getPlayerByName(name)</code></li>
+          <li><code>getServerCurrentEvent()</code></li>
+          <li><code>getEnumItem(enumName)</code></li>
+          <li><code>reloadScripts()</code></li>
+          <li><code>getServerName()</code></li>
+          <li><code>addWorldMenuWorld(worldID, displayName, color, priority)</code></li>
+          <li><code>removeWorldMenuWorld(worldID)</code></li>
+          <li><code>hideWorldMenuDefaultSpecialWorlds(hide)</code></li>
+          <li><code>getServerPlayers()</code></li>
+          <li><code>loadDataFromServer(key)</code>, <code>saveDataToServer(key, dataTable)</code></li>
+          <li><code>loadStringFromServer(key)</code>, <code>saveStringToServer(key, value)</code></li>
+          <li><code>getAllPlayers()</code>, <code>getMaxLevel()</code></li>
+          <li><code>registerLuaEvent(eventData)</code>, <code>addSidebarButton(buttonJson)</code></li>
+          <li><code>addSocialPortalButton(buttonDef, callback)</code></li>
+          <li><code>getTopPlayerByBalance()</code>, <code>getTopWorldByVisitors()</code></li>
+        </ul>
+      </section>
+
+      <section id="os_library" class="section">
+        <h2>OS Library</h2>
+        <ul>
+          <li><code>os.execute(command)</code> — gunakan dengan hati-hati.</li>
+          <li><code>os.time()</code>, <code>os.clock()</code>, <code>os.date()</code></li>
+          <li><code>os.getenv(varname)</code>, <code>os.remove(filename)</code>, <code>os.rename(oldname, newname)</code></li>
+          <li><code>os.setlocale(locale, category)</code>, <code>os.exit(code)</code></li>
+        </ul>
+      </section>
+
+      <section id="libraries" class="section">
+        <h2>Libraries</h2>
+        <ul>
+          <li><code>http.get(url, headers)</code> — harus dibungkus coroutine.</li>
+          <li><code>http.post(url, headers, postData)</code> — harus dibungkus coroutine.</li>
+          <li><code>json.encode(dataTable)</code>, <code>json.decode(jsonString)</code></li>
+        </ul>
+      </section>
+
+      <section id="examples" class="section">
+        <h2>Examples & Dialog Syntax</h2>
+
+        <h3>Dialog syntax (ringkasan)</h3>
+        <p>Dialog string menggunakan komponen seperti:</p>
+        <ul>
+          <li><code>set_default_color|color</code></li>
+          <li><code>set_border_color|r,g,b,a</code></li>
+          <li><code>set_bg_color|r,g,b,a</code></li>
+          <li><code>add_label|size|message|alignment</code></li>
+          <li><code>add_button|name|label|flags|0|0</code></li>
+          <li><code>add_text_input|name|message|defaultInput|length</code></li>
+          <li>dan masih banyak command dialog lainnya (lihat sections di atas).</li>
+        </ul>
+
+        <h3>Contoh: kirim pesan ke player</h3>
+        <pre><code>function onPlayerLoginCallback(player)
+  player:onConsoleMessage("Welcome to the server!")
+  player:onTalkBubble(player:getNetID(), "Hi there!", true)
+end
+</code></pre>
+
+        <h3>Contoh: spawn gems</h3>
+        <pre><code>function onPlayerEnterWorldCallback(world, player)
+  world:spawnGems(5, 5, 10, player)
+end
+</code></pre>
+
+        <h3>Contoh: prevent tile placement</h3>
+        <pre><code>function onTilePlaceCallback(world, player, tile, placingID)
+  if placingID == 1234 then
+    return true -- block placement of item 1234
+  end
+end
+</code></pre>
+
+        <p class="muted">Catatan: ini ringkasan. Dokumen lengkap mencakup banyak callback dan fungsi - sudah diintegrasikan ke halaman ini.</p>
+      </section>
+
+      <footer class="footer">
+        <div>Created for you — Growsoft Docs • Minimal Gaming theme</div>
+        <div class="small">Upload this repo to GitHub and enable GitHub Pages (guide below).</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('.nav-item').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    });
+
+    // Active nav highlight on scroll
+    const sections = Array.from(document.querySelectorAll('.section'));
+    window.addEventListener('scroll', () => {
+      const pos = window.scrollY + 120;
+      sections.forEach(s => {
+        const top = s.offsetTop;
+        const bottom = top + s.offsetHeight;
+        const id = s.id;
+        const navA = document.querySelector('.nav a[href="#' + id + '"]');
+        if (!navA) return;
+        if (pos >= top && pos < bottom) {
+          document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
+          navA.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
