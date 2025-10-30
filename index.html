@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Growsoft Docs</title>
+  <title>Growsoft Docs — Interactive</title>
 
   <!-- Google fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
       <div class="title-wrap">
-        <div class="title-fake"></div> <!-- placeholder for logo space -->
+        <div class="title-fake" aria-hidden="true"></div>
         <div class="site-title">GROWSOFT</div>
       </div>
+
       <nav class="top-actions">
         <a class="small-btn" href="#overview">Get Started</a>
         <a class="small-btn ghost" href="https://github.com/bilzxdx/growsoft-docs" target="_blank" rel="noopener">GitHub</a>
@@ -29,7 +29,7 @@
     <aside class="sidebar" aria-label="Navigation">
       <div class="search-wrap">
         <svg class="search-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.57-5.34C15.2 5.59 12.61 3 9.5 3S3.8 5.59 3.8 8.39 6.39 13.78 9.5 13.78c1.61 0 3.09-.59 4.22-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 12c-2.02 0-3.7-1.68-3.7-3.74S7.48 4.5 9.5 4.5s3.7 1.68 3.7 3.76S11.52 12 9.5 12z"/></svg>
-        <input id="search" type="search" placeholder="Search functions..." aria-label="Search functions" />
+        <input id="search" type="search" placeholder="Search sections..." aria-label="Search sections" />
       </div>
 
       <nav class="nav" id="navlist">
@@ -46,265 +46,457 @@
         <a href="#server_global" class="nav-item">Server & Global</a>
         <a href="#os_library" class="nav-item">OS Library</a>
         <a href="#libraries" class="nav-item">Libraries</a>
-        <a href="#misc" class="nav-item">Miscellaneous</a>
         <a href="#examples" class="nav-item">Examples</a>
       </nav>
 
       <div class="sidebar-footer">
-        <div class="muted">Theme: Premium • Professional</div>
+        <div class="muted">Theme: Premium • Interactive</div>
         <div class="muted">Hosted: <a class="link" href="https://bilzxdx.github.io/growsoft-docs/" target="_blank">bilzxdx.github.io/growsoft-docs</a></div>
       </div>
     </aside>
 
     <main class="content">
-      <!-- HERO CARD -->
-      <section id="overview" class="hero card">
+      <!-- HERO / Overview -->
+      <section id="overview" class="hero card open">
         <div class="hero-left">
           <h1>Growsoft Docs</h1>
-          <p class="lead">Authoritative Growsoft Lua API documentation — callbacks, objects, dialog syntax, server utilities and practical examples for server scripting.</p>
+          <p class="lead">Authoritative Growsoft Lua API documentation. Click a section's "Show APIs" to reveal function cards. Each function has its own bordered panel and a copy button for quick usage.</p>
           <div class="cta-row">
             <a class="btn primary" href="#callbacks">API Reference</a>
             <a class="btn" href="#examples">Examples</a>
             <a class="btn ghost" href="https://bilzxdx.github.io/growsoft-docs/" target="_blank">Live Site</a>
           </div>
         </div>
+
         <div class="hero-right">
           <div class="hero-stats">
             <div><strong>Sections</strong><span>14</span></div>
-            <div><strong>Examples</strong><span>20+</span></div>
             <div><strong>Version</strong><span>1.0.0</span></div>
+            <div><strong>Interactive</strong><span>Copy buttons</span></div>
           </div>
         </div>
       </section>
 
-      <!-- CALLBACKS (detailed) -->
-      <section id="callbacks" class="card section-panel">
+      <!-- SECTION TEMPLATE: each section collapsed by default -->
+      <!-- CALLBACKS -->
+      <section id="callbacks" class="card section-collapsible">
         <div class="panel-header">
           <h2>Callbacks</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
         </div>
-        <div class="panel-body">
-          <p>Engine-level callbacks you can implement in your Lua scripts.</p>
-          <ul class="doc-list">
-            <li><code>onPlayerDialogCallback(world, player, data)</code> — handle dialog interactions (data contains <code>dialog_name</code>, <code>buttonClicked</code>).</li>
-            <li><code>onPlayerConsumableCallback(world, player, tile, clickedPlayer, itemID)</code></li>
-            <li><code>onTileWrenchCallback(world, player, tile)</code></li>
-            <li><code>onPlayerWrenchCallback(world, wrenchingPlayer)</code></li>
-            <li><code>onPlayerLoginCallback(player)</code></li>
-            <li><code>onTilePlaceCallback(world, player, tile, placingID)</code> — return <code>true</code> to block placement.</li>
-            <li><code>onPlayerTick(player)</code> — called every 1000ms per online player.</li>
-            <li><code>onWorldTick(world)</code> — called every 100ms for active worlds.</li>
-            <li><code>onTick()</code> — global 100ms tick.</li>
-            <li>and many more (see below sections).</li>
-          </ul>
+
+        <div class="panel-body hide">
+          <p class="muted">Engine-level callbacks. Click the copy icon to copy the function signature.</p>
+
+          <div class="api-grid">
+            <!-- Function card -->
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">onPlayerDialogCallback(world, player, data)</code>
+                <button class="copy-btn" data-copy="onPlayerDialogCallback(world, player, data)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Handles player dialog interactions. <code>data</code> contains <code>dialog_name</code> and <code>buttonClicked</code>.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">onPlayerConsumableCallback(world, player, tile, clickedPlayer, itemID)</code>
+                <button class="copy-btn" data-copy="onPlayerConsumableCallback(world, player, tile, clickedPlayer, itemID)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Triggered when a player uses a consumable item.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">onTileWrenchCallback(world, player, tile)</code>
+                <button class="copy-btn" data-copy="onTileWrenchCallback(world, player, tile)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Triggered when a player wrenches a tile.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">onPlayerLoginCallback(player)</code>
+                <button class="copy-btn" data-copy="onPlayerLoginCallback(player)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Called when a player logs in.</p>
+            </article>
+
+            <!-- add more as needed... -->
+          </div>
         </div>
       </section>
 
       <!-- COMMANDS -->
-      <section id="commands" class="card section-panel">
-        <div class="panel-header"><h2>Commands</h2></div>
-        <div class="panel-body">
-          <p>Register custom commands via <code>registerLuaCommand(commandData)</code>. <code>commandData</code> example: <code>{ command="name", roleRequired=0, description="desc" }</code>.</p>
+      <section id="commands" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Commands</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <p class="muted">Register custom slash commands.</p>
+
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">registerLuaCommand(commandData)</code>
+                <button class="copy-btn" data-copy="registerLuaCommand(commandData)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Registers a new command. <code>commandData</code> example: <code>{ command='name', roleRequired=0, description='desc' }</code>.</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <!-- DIALOG SYNTAX -->
-      <section id="dialog_syntax" class="card section-panel">
-        <div class="panel-header"><h2>Dialog Syntax</h2></div>
-        <div class="panel-body">
-          <p>Dialog strings are built with components:</p>
-          <ul class="doc-list">
-            <li><code>set_default_color|color</code></li>
-            <li><code>set_border_color|r,g,b,a</code></li>
-            <li><code>set_bg_color|r,g,b,a</code></li>
-            <li><code>add_label|size|message|alignment</code></li>
-            <li><code>add_button|name|label|flags|0|0</code></li>
-            <li><code>add_text_input|name|message|defaultInput|length</code></li>
-            <li>...and many UI helpers (progress bars, banners, searchable lists, etc.)</li>
-          </ul>
+      <section id="dialog_syntax" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Dialog Syntax</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <p class="muted">Dialog string components used to build UI dialogs.</p>
+
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">set_default_color|color</code>
+                <button class="copy-btn" data-copy="set_default_color|color"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Set default dialog text color.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">add_button|name|label|flags|0|0</code>
+                <button class="copy-btn" data-copy="add_button|name|label|flags|0|0"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Add a standard dialog button.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- PLAYER API -->
-      <section id="player" class="card section-panel">
-        <div class="panel-header"><h2>Player API</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>player:getGems()</code>, <code>player:addGems(amount, sendPacket, isDisplay)</code>, <code>player:removeGems(amount, sendPacket, isDisplay)</code></li>
-            <li><code>player:getCoins()</code>, <code>player:removeCoins(amount, sendPacket)</code></li>
-            <li><code>player:getBankBalance()</code>, <code>player:addBankBalance(amount)</code>, <code>player:removeBankBalance(amount)</code></li>
-            <li><code>player:onConsoleMessage(message)</code>, <code>player:onTalkBubble(netID, message, isApi)</code></li>
-            <li><code>player:onDialogRequest(dialogString)</code>, <code>player:getNetID()</code>, <code>player:getUserID()</code></li>
-            <li><code>player:playAudio(filePath, delay)</code>, <code>player:getItemAmount(itemID)</code>, <code>player:changeItem(itemID, amount, isSendPacket)</code></li>
-            <li><code>player:enterWorld(worldName, doorID)</code>, <code>player:getWorldName()</code></li>
-            <li><code>player:disconnect()</code>, <code>player:getCleanName()</code>, <code>player:hasRole(role)</code></li>
-            <li>...and many helper methods (titles, mailbox, clothing UI, variants, actions).</li>
-          </ul>
+      <!-- PLAYER -->
+      <section id="player" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Player API</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">player:getGems()</code>
+                <button class="copy-btn" data-copy="player:getGems()"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Returns the player's gem count.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">player:addGems(amount, sendPacket, isDisplay)</code>
+                <button class="copy-btn" data-copy="player:addGems(amount, sendPacket, isDisplay)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Add gems to a player's account.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">player:removeGems(amount, sendPacket, isDisplay)</code>
+                <button class="copy-btn" data-copy="player:removeGems(amount, sendPacket, isDisplay)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Remove gems from a player.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- WORLD API -->
-      <section id="world" class="card section-panel">
-        <div class="panel-header"><h2>World API</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>world:getOwner()</code>, <code>world:getName()</code></li>
-            <li><code>world:useItemEffect(playerNetID, itemID, targetNetID, effectDelay)</code></li>
-            <li><code>world:updateClothing(player)</code>, <code>world:spawnGems(x,y,amount,player)</code></li>
-            <li><code>world:getVisiblePlayersCount()</code>, <code>world:getPlayersCount(includeInvisible)</code></li>
-            <li><code>world:onCreateExplosion(x,y,radius,power)</code>, <code>world:addXP(player, amount)</code></li>
-            <li><code>world:setPlayerPosition(player,x,y)</code>, <code>world:getDroppedItems()</code></li>
-            <li><code>world:setTileForeground(tile, itemID, isVisual, player)</code>, <code>world:updateTile(tile)</code></li>
-          </ul>
+      <!-- WORLD -->
+      <section id="world" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>World API</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">world:getOwner()</code>
+                <button class="copy-btn" data-copy="world:getOwner()"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Returns the player object of the world's owner.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">world:spawnGems(x, y, amount, player)</code>
+                <button class="copy-btn" data-copy="world:spawnGems(x, y, amount, player)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Spawn gems at a tile coordinate.</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <!-- TILE -->
-      <section id="tile" class="card section-panel">
-        <div class="panel-header"><h2>Tile API</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>tile:getTileID()</code>, <code>tile:getPosX()</code>, <code>tile:getPosY()</code></li>
-            <li><code>tile:getTileForeground()</code>, <code>tile:getTileBackground()</code></li>
-            <li><code>tile:getTileData(property)</code>, <code>tile:setTileDataInt(property, value)</code></li>
-            <li><code>tile:getTileItem()</code></li>
-          </ul>
+      <section id="tile" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Tile API</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">tile:getTileID()</code>
+                <button class="copy-btn" data-copy="tile:getTileID()"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Get the tile's foreground item ID.</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <!-- ITEM -->
-      <section id="item" class="card section-panel">
-        <div class="panel-header"><h2>Item API</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>getItem(itemID)</code> — returns global item object.</li>
-            <li>Item methods: <code>item:getName()</code>, <code>item:getRarity()</code>, <code>item:getActionType()</code></li>
-            <li><code>item:getGrowTime()</code>, <code>item:setGrowTime(seconds)</code></li>
-            <li><code>item:setActionType(type)</code>, <code>item:setDescription(text)</code>, <code>item:setPrice(price)</code></li>
-          </ul>
+      <section id="item" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Item API</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">getItem(itemID)</code>
+                <button class="copy-btn" data-copy="getItem(itemID)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Returns the global item object for the given ID.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- INVENTORY / DROP -->
-      <section id="inventory" class="card section-panel">
-        <div class="panel-header"><h2>Inventory Item</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>inventory_item:getItemID()</code>, <code>inventory_item:getItemCount()</code></li>
-          </ul>
+      <!-- INVENTORY -->
+      <section id="inventory" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Inventory Item</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">inventory_item:getItemID()</code>
+                <button class="copy-btn" data-copy="inventory_item:getItemID()"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Returns the inventory item's ID.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section id="drop" class="card section-panel">
-        <div class="panel-header"><h2>Drop</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>drop:getItemID()</code>, <code>drop:getItemCount()</code>, <code>drop:getPosX()</code>, <code>drop:getPosY()</code></li>
-            <li><code>drop:getUID()</code>, <code>drop:getFlags()</code></li>
-          </ul>
+      <!-- DROP -->
+      <section id="drop" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Drop</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">drop:getItemID()</code>
+                <button class="copy-btn" data-copy="drop:getItemID()"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Get dropped item ID.</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <!-- SERVER & GLOBAL -->
-      <section id="server_global" class="card section-panel">
-        <div class="panel-header"><h2>Server & Global</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>getItemsCount()</code>, <code>getPlayerByName(name)</code></li>
-            <li><code>getServerCurrentEvent()</code>, <code>getEnumItem(enumName)</code></li>
-            <li><code>reloadScripts()</code>, <code>getServerName()</code></li>
-            <li><code>loadDataFromServer(key)</code>, <code>saveDataToServer(key, dataTable)</code></li>
-            <li><code>registerLuaEvent(eventData)</code>, <code>addSidebarButton(buttonJson)</code></li>
-          </ul>
+      <section id="server_global" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Server & Global</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">getItemsCount()</code>
+                <button class="copy-btn" data-copy="getItemsCount()"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Returns total number of items loaded on server.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">reloadScripts()</code>
+                <button class="copy-btn" data-copy="reloadScripts()"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Reload all Lua scripts on the server.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- OS Library -->
-      <section id="os_library" class="card section-panel">
-        <div class="panel-header"><h2>OS Library</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>os.execute(command)</code> — execute system commands (use with caution).</li>
-            <li><code>os.time()</code>, <code>os.clock()</code>, <code>os.date()</code></li>
-            <li><code>os.getenv(varname)</code>, <code>os.remove(filename)</code>, <code>os.rename(oldname,newname)</code></li>
-          </ul>
+      <!-- OS LIBRARY -->
+      <section id="os_library" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>OS Library</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">os.execute(command)</code>
+                <button class="copy-btn" data-copy="os.execute(command)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Execute OS command (use carefully).</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- Libraries -->
-      <section id="libraries" class="card section-panel">
-        <div class="panel-header"><h2>Libraries</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li><code>http.get(url, headers)</code> — must be wrapped inside a coroutine.</li>
-            <li><code>http.post(url, headers, postData)</code></li>
-            <li><code>json.encode(dataTable)</code>, <code>json.decode(jsonString)</code></li>
-          </ul>
+      <!-- LIBRARIES -->
+      <section id="libraries" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Libraries</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
+        </div>
+
+        <div class="panel-body hide">
+          <div class="api-grid">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">http.get(url, headers)</code>
+                <button class="copy-btn" data-copy="http.get(url, headers)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">HTTP GET — must be wrapped in coroutine.</p>
+            </article>
+
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">json.decode(jsonString)</code>
+                <button class="copy-btn" data-copy="json.decode(jsonString)"><span class="icon">📋</span> Copy</button>
+              </div>
+              <p class="api-desc">Decode JSON string to Lua table.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- Misc -->
-      <section id="misc" class="card section-panel">
-        <div class="panel-header"><h2>Miscellaneous</h2></div>
-        <div class="panel-body">
-          <ul class="doc-list">
-            <li>Dialog data keys: <code>data['dialog_name']</code>, <code>data['buttonClicked']</code>, <code>data['selection']</code>.</li>
-            <li>Player platform IDs: 0=Win, 1=iOS, 2=macOS, 4=Android.</li>
-          </ul>
+      <!-- EXAMPLES -->
+      <section id="examples" class="card section-collapsible">
+        <div class="panel-header">
+          <h2>Examples</h2>
+          <div class="panel-actions">
+            <button class="btn small show-btn">Show APIs</button>
+            <button class="btn small ghost" data-collapse>Collapse</button>
+          </div>
         </div>
-      </section>
 
-      <!-- Examples -->
-      <section id="examples" class="card section-panel">
-        <div class="panel-header"><h2>Examples</h2></div>
-        <div class="panel-body">
-          <h4>Simple welcome</h4>
-          <pre><code>function onPlayerLoginCallback(player)
+        <div class="panel-body hide">
+          <div class="api-grid full-width">
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">onPlayerLoginCallback example</code>
+                <button class="copy-btn" data-copy='function onPlayerLoginCallback(player)\n  player:onConsoleMessage("Welcome to the server!")\nend'><span class="icon">📋</span> Copy</button>
+              </div>
+              <pre class="api-desc"><code>function onPlayerLoginCallback(player)
   player:onConsoleMessage("Welcome to the server!")
-  player:onTalkBubble(player:getNetID(), "Welcome!", true)
 end</code></pre>
+            </article>
 
-          <h4>Spawn gems on enter</h4>
-          <pre><code>function onPlayerEnterWorldCallback(world, player)
+            <article class="api-card">
+              <div class="api-top">
+                <code class="api-title">Spawn gems example</code>
+                <button class="copy-btn" data-copy='function onPlayerEnterWorldCallback(world, player)\n  world:spawnGems(5, 5, 10, player)\nend'><span class="icon">📋</span> Copy</button>
+              </div>
+              <pre class="api-desc"><code>function onPlayerEnterWorldCallback(world, player)
   world:spawnGems(5, 5, 10, player)
 end</code></pre>
-
-          <h4>HTTP (coroutine)</h4>
-          <pre><code>coroutine.wrap(function()
-  local ok, res = pcall(function()
-    return http.get("https://example.com/api", {["User-Agent"]="Growsoft"})
-  end)
-  if ok and res then
-    local data = json.decode(res)
-    -- handle data
-  end
-end)()</code></pre>
+            </article>
+          </div>
         </div>
       </section>
 
       <footer class="site-footer">
-        <div>Created for you — <strong>Growsoft Docs</strong> • Premium Theme</div>
+        <div>Created for you — <strong>Growsoft Docs</strong> • Interactive</div>
         <div class="muted">Hosted on <a class="link" href="https://bilzxdx.github.io/growsoft-docs/" target="_blank">https://bilzxdx.github.io/growsoft-docs/</a></div>
       </footer>
     </main>
   </div>
 
+  <!-- Toast -->
+  <div id="toast" class="toast" aria-live="polite"></div>
+
   <script>
-    // Smooth scrolling + nav highlight
+    // Smooth scrolling & nav active
     const navLinks = document.querySelectorAll('.nav-item');
-    const sections = Array.from(document.querySelectorAll('section[id]'));
+    const docSections = Array.from(document.querySelectorAll('section[id]'));
 
     navLinks.forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
         const id = a.getAttribute('href').slice(1);
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
     window.addEventListener('scroll', () => {
-      const y = window.scrollY + 160;
-      sections.forEach(s => {
+      const y = window.scrollY + 180;
+      docSections.forEach(s => {
         const top = s.offsetTop;
         const bottom = top + s.offsetHeight;
         const link = document.querySelector('.nav a[href="#' + s.id + '"]');
@@ -316,32 +508,95 @@ end)()</code></pre>
       });
     });
 
-    // Search filter (lightweight)
-    const search = document.getElementById('search');
-    const nav = document.getElementById('navlist');
-    search.addEventListener('input', () => {
-      const q = search.value.trim().toLowerCase();
-      const items = nav.querySelectorAll('.nav-item');
+    // Collapsible panels: Show APIs + Collapse
+    document.querySelectorAll('.section-collapsible').forEach(section => {
+      const showBtn = section.querySelector('.show-btn');
+      const collapseBtn = section.querySelector('[data-collapse]');
+      const body = section.querySelector('.panel-body');
+
+      // collapsed by default: body has class 'hide'
+      if (showBtn) {
+        showBtn.addEventListener('click', () => {
+          body.classList.remove('hide');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          section.classList.add('open');
+          // hide show button after opening
+          showBtn.style.display = 'none';
+        });
+      }
+
+      if (collapseBtn) {
+        collapseBtn.addEventListener('click', () => {
+          body.style.maxHeight = null;
+          setTimeout(() => body.classList.add('hide'), 240);
+          section.classList.remove('open');
+          if (showBtn) showBtn.style.display = '';
+        });
+      }
+    });
+
+    // Copy buttons & toast
+    const toast = document.getElementById('toast');
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1800);
+    }
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = btn.getAttribute('data-copy') || '';
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            // fallback
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+          }
+          // small feedback
+          btn.classList.add('copied');
+          setTimeout(() => btn.classList.remove('copied'), 900);
+          showToast('Copied ✅');
+        } catch (err) {
+          showToast('Copy failed');
+          console.error('copy failed', err);
+        }
+      });
+    });
+
+    // Search filtering for sidebar (dim non-matching)
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      const items = document.querySelectorAll('#navlist .nav-item');
       if (!q) {
-        items.forEach(i => { i.style.display = ''; i.classList.remove('dim'); });
+        items.forEach(i => { i.classList.remove('dim'); i.style.display = ''; });
         return;
       }
       items.forEach(i => {
         const text = i.textContent.trim().toLowerCase();
         if (text.includes(q)) {
-          i.style.display = '';
           i.classList.remove('dim');
-        } else {
           i.style.display = '';
-          i.classList.add('dim'); // keep visible but dim
+        } else {
+          i.classList.add('dim');
+          i.style.display = '';
         }
       });
     });
 
-    // small accessibility: focus first section on load
+    // Set overview open on load (we keep other sections collapsed)
     document.addEventListener('DOMContentLoaded', () => {
-      const first = document.getElementById('overview');
-      if (first) first.tabIndex = -1;
+      const overview = document.getElementById('overview');
+      if (overview) overview.classList.add('open');
     });
   </script>
 </body>
