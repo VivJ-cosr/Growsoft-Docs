@@ -4,201 +4,344 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Growsoft Docs</title>
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="topbar">
-    <div class="topbar-left">
-      <div class="logo-placeholder" aria-hidden="true"></div>
-      <div class="site-title">Growsoft Docs</div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="title-wrap">
+        <div class="title-fake"></div> <!-- placeholder for logo space -->
+        <div class="site-title">GROWSOFT</div>
+      </div>
+      <nav class="top-actions">
+        <a class="small-btn" href="#overview">Get Started</a>
+        <a class="small-btn ghost" href="https://github.com/bilzxdx/growsoft-docs" target="_blank" rel="noopener">GitHub</a>
+        <a class="small-btn ghost" href="https://discord.gg/smgS6sq83y" target="_blank" rel="noopener">Discord</a>
+      </nav>
     </div>
-    <div class="topbar-right">
-      <a class="top-btn" id="btn-get-started" href="#home">Get Started</a>
-      <a class="top-btn" href="https://github.com/bilzxdx/growsoft-docs" target="_blank" rel="noopener">GitHub</a>
-      <a class="top-btn" href="https://discord.gg/smgS6sq83y" target="_blank" rel="noopener">Discord</a>
-    </div>
-  </div>
+  </header>
 
   <div id="app">
-    <aside class="sidebar" aria-label="Documentation navigation">
-      <nav>
-        <a href="#home" class="nav-item">Home</a>
+    <aside class="sidebar" aria-label="Navigation">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.57-5.34C15.2 5.59 12.61 3 9.5 3S3.8 5.59 3.8 8.39 6.39 13.78 9.5 13.78c1.61 0 3.09-.59 4.22-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 12c-2.02 0-3.7-1.68-3.7-3.74S7.48 4.5 9.5 4.5s3.7 1.68 3.7 3.76S11.52 12 9.5 12z"/></svg>
+        <input id="search" type="search" placeholder="Search functions..." aria-label="Search functions" />
+      </div>
+
+      <nav class="nav" id="navlist">
         <a href="#overview" class="nav-item">Overview</a>
         <a href="#callbacks" class="nav-item">Callbacks</a>
-        <a href="#player" class="nav-item">Player API</a>
-        <a href="#world" class="nav-item">World API</a>
-        <a href="#tile" class="nav-item">Tile API</a>
-        <a href="#item" class="nav-item">Item API</a>
-        <a href="#inventory_drop" class="nav-item">Inventory / Drop</a>
+        <a href="#commands" class="nav-item">Commands</a>
+        <a href="#dialog_syntax" class="nav-item">Dialog Syntax</a>
+        <a href="#player" class="nav-item">Player</a>
+        <a href="#world" class="nav-item">World</a>
+        <a href="#tile" class="nav-item">Tile</a>
+        <a href="#item" class="nav-item">Item</a>
+        <a href="#inventory" class="nav-item">Inventory Item</a>
+        <a href="#drop" class="nav-item">Drop</a>
         <a href="#server_global" class="nav-item">Server & Global</a>
         <a href="#os_library" class="nav-item">OS Library</a>
         <a href="#libraries" class="nav-item">Libraries</a>
-        <a href="#dialog_syntax" class="nav-item">Dialog Syntax</a>
+        <a href="#misc" class="nav-item">Miscellaneous</a>
         <a href="#examples" class="nav-item">Examples</a>
       </nav>
+
       <div class="sidebar-footer">
-        <div class="muted">Theme: Professional • Minimal Gaming</div>
-        <div class="muted">Hosted on <a class="link" href="https://bilzxdx.github.io/growsoft-docs/" target="_blank">bilzxdx.github.io/growsoft-docs</a></div>
+        <div class="muted">Theme: Premium • Professional</div>
+        <div class="muted">Hosted: <a class="link" href="https://bilzxdx.github.io/growsoft-docs/" target="_blank">bilzxdx.github.io/growsoft-docs</a></div>
       </div>
     </aside>
 
-    <main class="main">
-      <!-- HERO -->
-      <section id="home" class="hero">
-        <div class="hero-inner">
+    <main class="content">
+      <!-- HERO CARD -->
+      <section id="overview" class="hero card">
+        <div class="hero-left">
           <h1>Growsoft Docs</h1>
-          <p class="lead">Complete Growsoft Lua API reference — callbacks, player/world/tile/item objects, server utilities, dialog syntax, and examples.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#overview">Get Started</a>
+          <p class="lead">Authoritative Growsoft Lua API documentation — callbacks, objects, dialog syntax, server utilities and practical examples for server scripting.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#callbacks">API Reference</a>
             <a class="btn" href="#examples">Examples</a>
             <a class="btn ghost" href="https://bilzxdx.github.io/growsoft-docs/" target="_blank">Live Site</a>
           </div>
         </div>
-      </section>
-
-      <section id="overview" class="section card">
-        <h2>Overview</h2>
-        <p>This documentation covers every major Growsoft Lua API section. Use the navigation on the left or the buttons above to explore.</p>
-        <div class="card-row">
-          <div class="card-small">
-            <h4>Who is this for?</h4>
-            <p>Server developers using Growsoft Lua API for scripting and automation.</p>
-            <a class="card-btn" href="#callbacks">API Reference</a>
-          </div>
-          <div class="card-small">
-            <h4>Want examples?</h4>
-            <p>See ready-to-use Lua snippets showing how to create callbacks and automate actions.</p>
-            <a class="card-btn" href="#examples">View Examples</a>
-          </div>
-          <div class="card-small">
-            <h4>Contribute</h4>
-            <p>Improve or translate this doc via GitHub.</p>
-            <a class="card-btn" href="https://github.com/bilzxdx/growsoft-docs" target="_blank">GitHub Repo</a>
+        <div class="hero-right">
+          <div class="hero-stats">
+            <div><strong>Sections</strong><span>14</span></div>
+            <div><strong>Examples</strong><span>20+</span></div>
+            <div><strong>Version</strong><span>1.0.0</span></div>
           </div>
         </div>
       </section>
 
-      <!-- CALLBACKS -->
-      <section id="callbacks" class="section collapsible">
-        <div class="section-head">
+      <!-- CALLBACKS (detailed) -->
+      <section id="callbacks" class="card section-panel">
+        <div class="panel-header">
           <h2>Callbacks</h2>
-          <button class="toggle-btn">Expand</button>
         </div>
-        <div class="section-body">
-          <ul>
-            <li><code>onPlayerDialogCallback(world, player, data)</code></li>
+        <div class="panel-body">
+          <p>Engine-level callbacks you can implement in your Lua scripts.</p>
+          <ul class="doc-list">
+            <li><code>onPlayerDialogCallback(world, player, data)</code> — handle dialog interactions (data contains <code>dialog_name</code>, <code>buttonClicked</code>).</li>
+            <li><code>onPlayerConsumableCallback(world, player, tile, clickedPlayer, itemID)</code></li>
+            <li><code>onTileWrenchCallback(world, player, tile)</code></li>
+            <li><code>onPlayerWrenchCallback(world, wrenchingPlayer)</code></li>
             <li><code>onPlayerLoginCallback(player)</code></li>
-            <li><code>onTilePlaceCallback(world, player, tile, placingID)</code></li>
-            <li><code>onPlayerTick(player)</code>, <code>onWorldTick(world)</code></li>
-            <li><code>onPlayerEnterWorldCallback(world, player)</code>, <code>onPlayerLeaveWorldCallback(world, player)</code></li>
-            <li><code>onTilePunchCallback(world, player, tile)</code>, <code>onPlayerDisconnectCallback(player)</code></li>
+            <li><code>onTilePlaceCallback(world, player, tile, placingID)</code> — return <code>true</code> to block placement.</li>
+            <li><code>onPlayerTick(player)</code> — called every 1000ms per online player.</li>
+            <li><code>onWorldTick(world)</code> — called every 100ms for active worlds.</li>
+            <li><code>onTick()</code> — global 100ms tick.</li>
+            <li>and many more (see below sections).</li>
           </ul>
         </div>
       </section>
 
-      <!-- PLAYER -->
-      <section id="player" class="section collapsible">
-        <div class="section-head">
-          <h2>Player API</h2>
-          <button class="toggle-btn">Expand</button>
-        </div>
-        <div class="section-body">
-          <ul>
-            <li><code>player:getGems()</code>, <code>player:addGems(amount)</code>, <code>player:removeGems(amount)</code></li>
-            <li><code>player:onDialogRequest(dialogString)</code>, <code>player:onConsoleMessage(message)</code></li>
-            <li><code>player:getWorldName()</code>, <code>player:enterWorld(name)</code></li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- WORLD -->
-      <section id="world" class="section collapsible">
-        <div class="section-head">
-          <h2>World API</h2>
-          <button class="toggle-btn">Expand</button>
-        </div>
-        <div class="section-body">
-          <ul>
-            <li><code>world:getOwner()</code>, <code>world:getName()</code></li>
-            <li><code>world:spawnGems(x,y,amount,player)</code></li>
-            <li><code>world:getPlayersCount()</code>, <code>world:getVisiblePlayersCount()</code></li>
-          </ul>
+      <!-- COMMANDS -->
+      <section id="commands" class="card section-panel">
+        <div class="panel-header"><h2>Commands</h2></div>
+        <div class="panel-body">
+          <p>Register custom commands via <code>registerLuaCommand(commandData)</code>. <code>commandData</code> example: <code>{ command="name", roleRequired=0, description="desc" }</code>.</p>
         </div>
       </section>
 
       <!-- DIALOG SYNTAX -->
-      <section id="dialog_syntax" class="section collapsible">
-        <div class="section-head">
-          <h2>Dialog Syntax</h2>
-          <button class="toggle-btn">Expand</button>
-        </div>
-        <div class="section-body">
-          <ul>
-            <li><code>add_label|size|text|align</code></li>
+      <section id="dialog_syntax" class="card section-panel">
+        <div class="panel-header"><h2>Dialog Syntax</h2></div>
+        <div class="panel-body">
+          <p>Dialog strings are built with components:</p>
+          <ul class="doc-list">
+            <li><code>set_default_color|color</code></li>
+            <li><code>set_border_color|r,g,b,a</code></li>
+            <li><code>set_bg_color|r,g,b,a</code></li>
+            <li><code>add_label|size|message|alignment</code></li>
             <li><code>add_button|name|label|flags|0|0</code></li>
-            <li><code>add_text_input|name|message|default|length</code></li>
+            <li><code>add_text_input|name|message|defaultInput|length</code></li>
+            <li>...and many UI helpers (progress bars, banners, searchable lists, etc.)</li>
           </ul>
         </div>
       </section>
 
-      <!-- EXAMPLES -->
-      <section id="examples" class="section collapsible">
-        <div class="section-head">
-          <h2>Examples</h2>
-          <button class="toggle-btn">Expand</button>
+      <!-- PLAYER API -->
+      <section id="player" class="card section-panel">
+        <div class="panel-header"><h2>Player API</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>player:getGems()</code>, <code>player:addGems(amount, sendPacket, isDisplay)</code>, <code>player:removeGems(amount, sendPacket, isDisplay)</code></li>
+            <li><code>player:getCoins()</code>, <code>player:removeCoins(amount, sendPacket)</code></li>
+            <li><code>player:getBankBalance()</code>, <code>player:addBankBalance(amount)</code>, <code>player:removeBankBalance(amount)</code></li>
+            <li><code>player:onConsoleMessage(message)</code>, <code>player:onTalkBubble(netID, message, isApi)</code></li>
+            <li><code>player:onDialogRequest(dialogString)</code>, <code>player:getNetID()</code>, <code>player:getUserID()</code></li>
+            <li><code>player:playAudio(filePath, delay)</code>, <code>player:getItemAmount(itemID)</code>, <code>player:changeItem(itemID, amount, isSendPacket)</code></li>
+            <li><code>player:enterWorld(worldName, doorID)</code>, <code>player:getWorldName()</code></li>
+            <li><code>player:disconnect()</code>, <code>player:getCleanName()</code>, <code>player:hasRole(role)</code></li>
+            <li>...and many helper methods (titles, mailbox, clothing UI, variants, actions).</li>
+          </ul>
         </div>
-        <div class="section-body">
+      </section>
+
+      <!-- WORLD API -->
+      <section id="world" class="card section-panel">
+        <div class="panel-header"><h2>World API</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>world:getOwner()</code>, <code>world:getName()</code></li>
+            <li><code>world:useItemEffect(playerNetID, itemID, targetNetID, effectDelay)</code></li>
+            <li><code>world:updateClothing(player)</code>, <code>world:spawnGems(x,y,amount,player)</code></li>
+            <li><code>world:getVisiblePlayersCount()</code>, <code>world:getPlayersCount(includeInvisible)</code></li>
+            <li><code>world:onCreateExplosion(x,y,radius,power)</code>, <code>world:addXP(player, amount)</code></li>
+            <li><code>world:setPlayerPosition(player,x,y)</code>, <code>world:getDroppedItems()</code></li>
+            <li><code>world:setTileForeground(tile, itemID, isVisual, player)</code>, <code>world:updateTile(tile)</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TILE -->
+      <section id="tile" class="card section-panel">
+        <div class="panel-header"><h2>Tile API</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>tile:getTileID()</code>, <code>tile:getPosX()</code>, <code>tile:getPosY()</code></li>
+            <li><code>tile:getTileForeground()</code>, <code>tile:getTileBackground()</code></li>
+            <li><code>tile:getTileData(property)</code>, <code>tile:setTileDataInt(property, value)</code></li>
+            <li><code>tile:getTileItem()</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ITEM -->
+      <section id="item" class="card section-panel">
+        <div class="panel-header"><h2>Item API</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>getItem(itemID)</code> — returns global item object.</li>
+            <li>Item methods: <code>item:getName()</code>, <code>item:getRarity()</code>, <code>item:getActionType()</code></li>
+            <li><code>item:getGrowTime()</code>, <code>item:setGrowTime(seconds)</code></li>
+            <li><code>item:setActionType(type)</code>, <code>item:setDescription(text)</code>, <code>item:setPrice(price)</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- INVENTORY / DROP -->
+      <section id="inventory" class="card section-panel">
+        <div class="panel-header"><h2>Inventory Item</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>inventory_item:getItemID()</code>, <code>inventory_item:getItemCount()</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="drop" class="card section-panel">
+        <div class="panel-header"><h2>Drop</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>drop:getItemID()</code>, <code>drop:getItemCount()</code>, <code>drop:getPosX()</code>, <code>drop:getPosY()</code></li>
+            <li><code>drop:getUID()</code>, <code>drop:getFlags()</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SERVER & GLOBAL -->
+      <section id="server_global" class="card section-panel">
+        <div class="panel-header"><h2>Server & Global</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>getItemsCount()</code>, <code>getPlayerByName(name)</code></li>
+            <li><code>getServerCurrentEvent()</code>, <code>getEnumItem(enumName)</code></li>
+            <li><code>reloadScripts()</code>, <code>getServerName()</code></li>
+            <li><code>loadDataFromServer(key)</code>, <code>saveDataToServer(key, dataTable)</code></li>
+            <li><code>registerLuaEvent(eventData)</code>, <code>addSidebarButton(buttonJson)</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- OS Library -->
+      <section id="os_library" class="card section-panel">
+        <div class="panel-header"><h2>OS Library</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>os.execute(command)</code> — execute system commands (use with caution).</li>
+            <li><code>os.time()</code>, <code>os.clock()</code>, <code>os.date()</code></li>
+            <li><code>os.getenv(varname)</code>, <code>os.remove(filename)</code>, <code>os.rename(oldname,newname)</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Libraries -->
+      <section id="libraries" class="card section-panel">
+        <div class="panel-header"><h2>Libraries</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li><code>http.get(url, headers)</code> — must be wrapped inside a coroutine.</li>
+            <li><code>http.post(url, headers, postData)</code></li>
+            <li><code>json.encode(dataTable)</code>, <code>json.decode(jsonString)</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Misc -->
+      <section id="misc" class="card section-panel">
+        <div class="panel-header"><h2>Miscellaneous</h2></div>
+        <div class="panel-body">
+          <ul class="doc-list">
+            <li>Dialog data keys: <code>data['dialog_name']</code>, <code>data['buttonClicked']</code>, <code>data['selection']</code>.</li>
+            <li>Player platform IDs: 0=Win, 1=iOS, 2=macOS, 4=Android.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Examples -->
+      <section id="examples" class="card section-panel">
+        <div class="panel-header"><h2>Examples</h2></div>
+        <div class="panel-body">
+          <h4>Simple welcome</h4>
           <pre><code>function onPlayerLoginCallback(player)
   player:onConsoleMessage("Welcome to the server!")
-end
+  player:onTalkBubble(player:getNetID(), "Welcome!", true)
+end</code></pre>
 
-function onPlayerEnterWorldCallback(world, player)
+          <h4>Spawn gems on enter</h4>
+          <pre><code>function onPlayerEnterWorldCallback(world, player)
   world:spawnGems(5, 5, 10, player)
 end</code></pre>
+
+          <h4>HTTP (coroutine)</h4>
+          <pre><code>coroutine.wrap(function()
+  local ok, res = pcall(function()
+    return http.get("https://example.com/api", {["User-Agent"]="Growsoft"})
+  end)
+  if ok and res then
+    local data = json.decode(res)
+    -- handle data
+  end
+end)()</code></pre>
         </div>
       </section>
 
       <footer class="site-footer">
-        <div>Created for you — <strong>Growsoft Docs</strong></div>
+        <div>Created for you — <strong>Growsoft Docs</strong> • Premium Theme</div>
         <div class="muted">Hosted on <a class="link" href="https://bilzxdx.github.io/growsoft-docs/" target="_blank">https://bilzxdx.github.io/growsoft-docs/</a></div>
       </footer>
     </main>
   </div>
 
   <script>
-    document.querySelectorAll('.nav-item').forEach(a=>{
-      a.addEventListener('click',e=>{
+    // Smooth scrolling + nav highlight
+    const navLinks = document.querySelectorAll('.nav-item');
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+
+    navLinks.forEach(a => {
+      a.addEventListener('click', e => {
         e.preventDefault();
-        const id=a.getAttribute('href').slice(1);
-        const el=document.getElementById(id);
-        if(el){
-          if(el.classList.contains('collapsible')&&!el.classList.contains('open')){
-            const btn=el.querySelector('.toggle-btn');
-            if(btn)btn.click();
-            setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),200);
-          }else{
-            el.scrollIntoView({behavior:'smooth',block:'start'});
-          }
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY + 160;
+      sections.forEach(s => {
+        const top = s.offsetTop;
+        const bottom = top + s.offsetHeight;
+        const link = document.querySelector('.nav a[href="#' + s.id + '"]');
+        if (!link) return;
+        if (y >= top && y < bottom) {
+          document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
+          link.classList.add('active');
         }
       });
     });
-    document.querySelectorAll('.section.collapsible .toggle-btn').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const s=btn.closest('.section');
-        const b=s.querySelector('.section-body');
-        s.classList.toggle('open');
-        if(s.classList.contains('open')){b.style.maxHeight=b.scrollHeight+'px';btn.innerText='Collapse';}
-        else{b.style.maxHeight=null;btn.innerText='Expand';}
+
+    // Search filter (lightweight)
+    const search = document.getElementById('search');
+    const nav = document.getElementById('navlist');
+    search.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase();
+      const items = nav.querySelectorAll('.nav-item');
+      if (!q) {
+        items.forEach(i => { i.style.display = ''; i.classList.remove('dim'); });
+        return;
+      }
+      items.forEach(i => {
+        const text = i.textContent.trim().toLowerCase();
+        if (text.includes(q)) {
+          i.style.display = '';
+          i.classList.remove('dim');
+        } else {
+          i.style.display = '';
+          i.classList.add('dim'); // keep visible but dim
+        }
       });
     });
-    document.getElementById('btn-get-started').addEventListener('click',e=>{
-      e.preventDefault();document.getElementById('overview').scrollIntoView({behavior:'smooth',block:'start'});
-    });
-    document.addEventListener('DOMContentLoaded',()=>{
-      document.querySelectorAll('.section.collapsible').forEach((s,idx)=>{
-        const b=s.querySelector('.section-body');const btn=s.querySelector('.toggle-btn');
-        if(idx===0){s.classList.add('open');b.style.maxHeight=b.scrollHeight+'px';btn.innerText='Collapse';}
-      });
+
+    // small accessibility: focus first section on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const first = document.getElementById('overview');
+      if (first) first.tabIndex = -1;
     });
   </script>
 </body>
